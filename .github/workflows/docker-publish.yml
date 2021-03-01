@@ -1,0 +1,43 @@
+name: Docker
+
+on:
+  push:
+    branches:
+      - main
+  # Run tests for any PRs.
+  pull_request:
+
+env:
+  IMAGE_ID: ghcr.io/${{ github.repository_owner }}/appengine-go
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Run test
+        run: docker build . --file Dockerfile --tag $IMAGE_ID:latest
+
+  push_latest:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build image
+        run: |
+          docker build . --file Dockerfile --tag $IMAGE_ID:latest
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.CR_PAT }}
+
+      - name: Push image to GitHub Container Registry
+        run: |
+          docker push $IMAGE_ID:latest
