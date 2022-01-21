@@ -12,8 +12,8 @@
 ## Github Container Registry構築手順
 1. [Docikerfile](Dockerfile)を用意する
 2. [docker-publish.yml](.github/workflows/docker-publish.yml)を用意する
-3. [organization -> Settings -> Packages](https://github.com/organizations/appify-technologies/settings/packages) からPackages improved container supportのEnable improved container supportとContainer CreationのPublicにチェック
-4. [Packages -> Settings ->  Options](https://github.com/orgs/appify-technologies/packages/container/appengine-go/settings)からRepository sourceのInherit access from source repository (recommended)にチェックをいれてパッケージの管理権限をGithub Repositoryから引き継ぐ
+3. [organization -> Settings -> Packages](https://github.com/organizations/appify-technologies/settings/packages) からContainer CreationのPublicにチェック
+4. [Packages -> Settings ->  Options](https://github.com/orgs/appify-technologies/packages/container/appengine-go/settings)からManage Actions accessからappify-technologies/docker-appengine-goを追加してRoleをWriteに変更する、Repository sourceのInherit access from source repository (recommended)にチェックをいれてパッケージの管理権限をGithub Repositoryから引き継ぐ、
 4. PushするとGithub ActionsからDocker imageのビルドとPushが実行される
 5. CIを実行
 6. [公開されたpackage](https://github.com/orgs/appify-technologies/packages/container/package/appengine-go)のPackage SettingsからChange package visibilityをPublicにする
