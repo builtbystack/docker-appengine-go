@@ -17,4 +17,4 @@ RUN cd $(mktemp -d); go mod init tmp; go get github.com/99designs/gqlgen@v0.14.0
     rm -rf /var/lib/apt/lists/* && \
     rm -rf ${GOPATH}/src ${GOPATH}/pkg \
     # ここで入れるのは、modulesのcacheを消してしまうと、参照したいテンプレートファイルがなくなってしまって正しく動作しないため、cache消去後に入れている
-    cd $(mktemp -d); go mod init tmp; go get -u github.com/Yamashou/gqlgenc@v0.0.2; cd -
+    cd $(mktemp -d); go mod init tmp; go get -u github.com/Yamashou/gqlgenc@v0.0.2-update; cd -
