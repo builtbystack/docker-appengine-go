@@ -2,7 +2,8 @@ FROM ghcr.io/gcpug/appengine-go:slim
 
 ARG GOLANGCI_LINT_VERSION=v1.43.0
 
-RUN cd $(mktemp -d); go mod init tmp; go get -u github.com/99designs/gqlgen; cd - && \
+# gqlgencがgqlgen v0.15.1に対応するまでgqlgenのバージョンを固定
+RUN cd $(mktemp -d); go mod init tmp; go get -u github.com/99designs/gqlgen@v0.14.0; cd - && \
     cd $(mktemp -d); go mod init tmp; go get -u golang.org/x/tools/cmd/goimports; cd - && \
     cd $(mktemp -d); go mod init tmp; go get mvdan.cc/gofumpt/gofumports; cd - && \
     cd $(mktemp -d); go mod init tmp; go get mvdan.cc/sh/v3/cmd/shfmt; cd - && \
