@@ -1,6 +1,6 @@
 FROM ghcr.io/gcpug/appengine-go:slim
 
-ARG GOLANGCI_LINT_VERSION="v1.43.0"
+ARG GOLANGCI_LINT_VERSION=v1.43.0
 
 # gofumportsがなくなったのでバージョン固定
 RUN cd $(mktemp -d); go mod init tmp; go get github.com/99designs/gqlgen@v0.16.0; cd - && \
@@ -8,7 +8,7 @@ RUN cd $(mktemp -d); go mod init tmp; go get github.com/99designs/gqlgen@v0.16.0
     cd $(mktemp -d); go mod init tmp; go get mvdan.cc/gofumpt/gofumports@v0.1.1; cd - && \
     cd $(mktemp -d); go mod init tmp; go get mvdan.cc/sh/v3/cmd/shfmt; cd - && \
     go get -u github.com/sachaos/xerrchk/cmd/xerrchk && \
-    curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin ${GOLANGCI_LINT_LATEST_VERSION} && \
+    curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin $GOLANGCI_LINT_VERSION && \
     \
     apt-get update && \
 	apt-get install -yqq --no-install-suggests --no-install-recommends \
