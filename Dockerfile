@@ -8,6 +8,7 @@ RUN cd $(mktemp -d); go mod init tmp; go get github.com/99designs/gqlgen@v0.16.0
     cd $(mktemp -d); go mod init tmp; go get mvdan.cc/gofumpt/gofumports@v0.1.1; cd - && \
     cd $(mktemp -d); go mod init tmp; go get mvdan.cc/sh/v3/cmd/shfmt; cd - && \
     go get -u github.com/sachaos/xerrchk/cmd/xerrchk && \
+    go install github.com/google/ko@latest && \
     curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin $GOLANGCI_LINT_VERSION && \
     \
     apt-get update && \
