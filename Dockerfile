@@ -10,6 +10,7 @@ RUN cd $(mktemp -d); go mod init tmp; go get github.com/99designs/gqlgen@v0.16.0
     go get -u github.com/sachaos/xerrchk/cmd/xerrchk && \
     go install github.com/google/ko@latest && \
     go install github.com/sonatard/runenv@latest && \
+    go install github.com/gqlgo/nodecheck/cmd/nodecheck@latest && \
     curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin $GOLANGCI_LINT_VERSION && \
     \
     # Artifact RegistryにPushするための認証設定
